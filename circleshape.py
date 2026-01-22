@@ -13,6 +13,15 @@ class CircleShape(pygame.sprite.Sprite):
         self.velocity = pygame.Vector2(0, 0)
         self.radius = radius
 
+    # Check for collision with another CircleShape
+    def collides_with(self, other):
+        # Calculate the distance between the two circles
+        # If the distance is less than or equal to the sum of their radii, they collide
+        if self.position.distance_to(other.position) <= self.radius + other.radius:
+            return True
+        else:
+            return False
+
     def draw(self, screen):
         # self.screen = screen
         # self.position = position
