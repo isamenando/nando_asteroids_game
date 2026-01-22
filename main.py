@@ -10,6 +10,7 @@ def main():
     
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     game_clock = pygame.time.Clock()
     dt = 0
@@ -22,14 +23,9 @@ def main():
                 return
         
         screen.fill("black")
-
-        # def Player(self):
-        #     def __init__(self, x = SCREEN_WIDTH // 2, y = SCREEN_HEIGHT // 2):
-        #         super().__init__(x, y)
-        #         self.rotation = 0
-
-        player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+        
         player.draw(screen)
+        player.update(dt)
 
         pygame.display.flip()
 
