@@ -9,13 +9,24 @@ def main():
     print(f"Screen height: {SCREEN_HEIGHT}")
     
     pygame.init()
+
+    # Group holding all the objects that can be updated
+    updatable = pygame.sprite.Group()
+    # Group holding all the objects that can be drawn
+    drawable = pygame.sprite.Group()
+    # Player is the name of the class, not an instance of it
+    # This must be done before any Player objects are created
+    Player.containers = (updatable, drawable)
+
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    
+    
 
     game_clock = pygame.time.Clock()
     dt = 0
 
-    while pygame:
+    while True:
         log_state()
         
         for event in pygame.event.get():
@@ -23,9 +34,11 @@ def main():
                 return
         
         screen.fill("black")
-        
-        player.draw(screen)
-        player.update(dt)
+
+        for obj in drawable:
+            obj.draw(screen)
+
+        updatable.update(dt)
 
         pygame.display.flip()
 
