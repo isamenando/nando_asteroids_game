@@ -39,6 +39,7 @@ class Player(CircleShape):
         # Rotate and move the player based on key presses
         # A and D to rotate left and right
         # W and S to move forward and backward
+        # Space to shoot
         if keys[pygame.K_a]:
             self.rotate(dt * -1)
         if keys[pygame.K_d]:
@@ -61,6 +62,8 @@ class Player(CircleShape):
         rotated_with_speed_vector = rotated_vector * PLAYER_SPEED * dt
         self.position += rotated_with_speed_vector
     
+    # in the Player class
+    # Shoot a shot in the direction the player is facing
     def shoot(self):
         shot = Shot(self.position.x, self.position.y)
         shot.velocity = pygame.Vector2(0, 1).rotate(self.rotation) * PLAYER_SHOT_SPEED
